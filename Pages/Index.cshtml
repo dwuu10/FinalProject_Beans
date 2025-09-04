@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p >Buy and Sell beans!</p>
+    <p>Real-Life weather will effect gameplay!</p>
+    <p>current weather:</p>
+    <ul>
+        <li>Seattle</li>
+        <li id="seattle"></li>
+    </ul>
+    <div id="GameWindow">
+
+    </div>
+    <label for="pet-select">Choose a pet:</label>
+    <select name="pets" id="pet-select">
+        <option value="">--Please choose an option--</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+        <option value="spider">Spider</option>
+        <option value="goldfish">Goldfish</option>
+    </select>
+
+</div>
