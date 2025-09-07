@@ -1,10 +1,13 @@
 
+using System.Runtime.InteropServices;
+
 namespace Final_Project_Beans
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            /*
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -30,11 +33,10 @@ namespace Final_Project_Beans
             app.MapRazorPages();
 
             app.Run();
+            */
 
-            var turns = 10;
-
-            var baseConsumption = 100;
-
+            
+            /*
             var city1 = new int[] { OpenWeatherMapAPI.Weather("Seattle"), OpenWeatherMapAPI.Humidity("Seattle"), 150, 50, 100, 100 };
             var city2 = new int[] { OpenWeatherMapAPI.Weather("Stockholm"), OpenWeatherMapAPI.Humidity("Stockholm"), 100, 150, 50, 100 };
             var city3 = new int[] { OpenWeatherMapAPI.Weather("Rome"), OpenWeatherMapAPI.Humidity("Rome"), 100, 100, 150, 50 };
@@ -44,6 +46,9 @@ namespace Final_Project_Beans
             {
 
             } while (currentturn <= turns);
+            */
+
+            Console.WriteLine($"Seattle weather: {OpenWeatherMapAPI.Weather("Seattle")}; humidity: {OpenWeatherMapAPI.Humidity("Seattle")}");
 
         }
     }

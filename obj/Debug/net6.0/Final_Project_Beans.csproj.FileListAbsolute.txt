@@ -66,3 +66,4 @@ C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\refint\
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_Project_Beans.pdb
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_Project_Beans.genruntimeconfig.cache
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\ref\Final_Project_Beans.dll
+C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_Project_Beans.sourcelink.json
