@@ -35,7 +35,7 @@ namespace Final_Project_Beans
             app.Run();
             */
 
-            
+
             /*
             var city1 = new int[] { OpenWeatherMapAPI.Weather("Seattle"), OpenWeatherMapAPI.Humidity("Seattle"), 150, 50, 100, 100 };
             var city2 = new int[] { OpenWeatherMapAPI.Weather("Stockholm"), OpenWeatherMapAPI.Humidity("Stockholm"), 100, 150, 50, 100 };
@@ -48,8 +48,9 @@ namespace Final_Project_Beans
             } while (currentturn <= turns);
             */
 
-            Console.WriteLine($"Seattle weather: {OpenWeatherMapAPI.Weather("Seattle")}; humidity: {OpenWeatherMapAPI.Humidity("Seattle")}");
+            //Console.WriteLine($"Seattle weather: {OpenWeatherMapAPI.Weather("Seattle")}; humidity: {OpenWeatherMapAPI.Humidity("Seattle")}");
 
+            Game.NewGame();
         }
     }
 }

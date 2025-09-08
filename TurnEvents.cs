@@ -58,28 +58,28 @@ public class TurnEvents
     {
         city.greenBeanPrice = city.greenBeanPrice * 2;
         city.yellowBeanPrice = city.yellowBeanPrice / 2;
-        Console.WriteLine($"{city.cityName} suffers from a drought! Green Beans double in value, Yellow Beans have half their normal value");
+        Console.WriteLine($"{city.cityName} suffers from a sudden drought! Green Beans double in value, Yellow Beans have half their normal value");
     }
 
     static void FloodEvent(CityData city)
     {
         city.greenBeanPrice = city.greenBeanPrice / 2;
         city.yellowBeanPrice = city.yellowBeanPrice * 2;
-        Console.WriteLine($"{city.cityName} suffers from a flood! Yellow Beans double in value, Green Beans have half their normal value");
+        Console.WriteLine($"{city.cityName} suffers from a sudden flood! Yellow Beans double in value, Green Beans have half their normal value");
     }
 
     static void HeatWaveEvent(CityData city)
     {
         city.blueBeanPrice = city.blueBeanPrice * 2;
         city.redBeanPrice = city.redBeanPrice / 2;
-        Console.WriteLine($"{city.cityName} suffers from a drought! Blue Beans double in value, Red Beans have half their normal value");
+        Console.WriteLine($"{city.cityName} suffers from a sudden heat wave! Blue Beans double in value, Red Beans have half their normal value");
     }
 
     static void BlizzardEvent(CityData city)
     {
         city.blueBeanPrice = city.blueBeanPrice / 2;
         city.redBeanPrice = city.redBeanPrice * 2;
-        Console.WriteLine($"{city.cityName} suffers from a drought! Red Beans double in value, Blue Beans have half their normal value");
+        Console.WriteLine($"{city.cityName} suffers from a sudden blizzard! Red Beans double in value, Blue Beans have half their normal value");
     }
 
     static void BlightEvent(CityData city)

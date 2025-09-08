@@ -61,7 +61,7 @@ public class Game
             customCash = int.Parse(customCashInput);
         }
 
-        Console.WriteLine("enter the amount of cash you would to start with, entering a non-number will default to 1000");
+        Console.WriteLine("enter the amount of turns you would like to play to, entering a non-number will default to 10");
         var customTurnsInput = Console.ReadLine();
         var customTurns = defaultTurns;
         if (int.TryParse(customTurnsInput, out x))
@@ -75,7 +75,7 @@ public class Game
 
     private void TurnLoop(Game gameData)
     {
-        if (gameData.exitGameFlag == true)
+        if (gameData.exitGameFlag == true || currentTurn > turnLimit)
         {
             GameEnd(gameData);
             return;
@@ -100,12 +100,13 @@ public class Game
         var cities = cityList;
         foreach (CityData city in cities)
         {
-            Console.WriteLine($"{city.cityName}:");
+            Console.WriteLine($"--{city.cityName}:");
             Console.WriteLine($"Blue Bean Price: {city.blueBeanPrice}");
             Console.WriteLine($"Red Bean Price: {city.redBeanPrice}");
             Console.WriteLine($"Yellow Bean Price: {city.yellowBeanPrice}");
             Console.WriteLine($"Green Bean Price: {city.greenBeanPrice}");
         }
+        Console.WriteLine("------------------");
     }
 
     private void PrintPlayerData()
@@ -117,6 +118,7 @@ public class Game
         Console.WriteLine($"Your Red Beans: {redBeans}");
         Console.WriteLine($"Your Yellow Beans: {yellowBeans}");
         Console.WriteLine($"Your Green Beans: {greenBeans}");
+        Console.WriteLine("------------------");
     }
 
     private bool validateBuyOrder(int amount, int price)
@@ -126,7 +128,7 @@ public class Game
 
     private bool validateSellOrder(int amount, int playerStock)
     {
-        return 0 <= playerStock - amount;
+        return playerStock - amount >= 0;
     }
 
     private void PlayerActions(Game gameData)
@@ -263,54 +265,61 @@ public class Game
         {
             BuySellOrder(city, beanType, gameData);
         }
-
-        if (validateBuyOrder(amount, beanPrice))
-        {
-            Console.WriteLine($"{amount} {beanType} Beans bought at {beanPrice} each for a total of {amount * beanPrice}");
-            currentCash = currentCash - (amount * beanPrice);
-            switch (beanType)
-            {
-                case "Blue":
-                    blueBeans += amount;
-                    break;
-                case "Red":
-                    redBeans += amount;
-                    break;
-                case "Yellow":
-                    yellowBeans += amount;
-                    break;
-                case "Green":
-                    greenBeans += amount;
-                    break;
-            }
-            Console.WriteLine($"{currentCash} remaining in balance");
-        }
         else
         {
-            Console.WriteLine("Invalid amount! try again!");
-            Buying(city, beanType, gameData);
+            if (validateBuyOrder(amount, beanPrice))
+            {
+                Console.WriteLine($"{amount} {beanType} Beans bought at {beanPrice} each for a total of {amount * beanPrice}");
+                currentCash = currentCash - (amount * beanPrice);
+                switch (beanType)
+                {
+                    case "Blue":
+                        blueBeans += amount;
+                        break;
+                    case "Red":
+                        redBeans += amount;
+                        break;
+                    case "Yellow":
+                        yellowBeans += amount;
+                        break;
+                    case "Green":
+                        greenBeans += amount;
+                        break;
+                }
+                Console.WriteLine($"{currentCash} remaining in balance");
+            }
+            else
+            {
+                Console.WriteLine("Invalid amount! try again!");
+                Buying(city, beanType, gameData);
+            }
         }
     }
 
     private void Selling(CityData city, string beanType, Game gameData)
     {
         int beanPrice = 0;
+        int beanAmount = 0;
         switch (beanType)
         {
             case "Blue":
                 beanPrice = city.blueBeanPrice;
+                beanAmount = blueBeans;
                 break;
             case "Red":
                 beanPrice = city.redBeanPrice;
+                beanAmount = redBeans;
                 break;
             case "Yellow":
                 beanPrice = city.yellowBeanPrice;
+                beanAmount = yellowBeans;
                 break;
             case "Green":
                 beanPrice = city.greenBeanPrice;
+                beanAmount = greenBeans;
                 break;
         }
-        Console.WriteLine($"How many {beanType} Beans would you like to sell?");
+        Console.WriteLine($"How many {beanType} Beans would you like to sell? type 0 or a negative number to cancel");
         var amountInput = Console.ReadLine();
         int amount = 0;
         if (int.TryParse(amountInput, out int x))
@@ -327,40 +336,46 @@ public class Game
         {
             BuySellOrder(city, beanType, gameData);
         }
-
-        if (validateSellOrder(amount, beanPrice))
-        {
-            Console.WriteLine($"{amount} {beanType} Beans sold at {beanPrice} each for a total of {amount * beanPrice}");
-            currentCash = currentCash + (amount * beanPrice);
-            switch (beanType)
-            {
-                case "Blue":
-                    blueBeans -= amount;
-                    Console.WriteLine($"{blueBeans} Blue Beans remaining in balance");
-                    break;
-                case "Red":
-                    redBeans -= amount;
-                    Console.WriteLine($"{redBeans} Red Beans remaining in balance");
-                    break;
-                case "Yellow":
-                    yellowBeans -= amount;
-                    Console.WriteLine($"{yellowBeans} Yellow Beans remaining in balance");
-                    break;
-                case "Green":
-                    greenBeans -= amount;
-                    Console.WriteLine($"{greenBeans} Green Beans remaining in balance");
-                    break;
-            }
-        }
         else
         {
-            Console.WriteLine("Invalid amount! try again!");
-            Selling(city, beanType, gameData);
+            if (validateSellOrder(amount, beanAmount))
+            {
+                Console.WriteLine($"{amount} {beanType} Beans sold at {beanPrice} each for a total of {amount * beanPrice}");
+                currentCash = currentCash + (amount * beanPrice);
+                switch (beanType)
+                {
+                    case "Blue":
+                        blueBeans -= amount;
+                        Console.WriteLine($"{blueBeans} Blue Beans remaining in balance");
+                        break;
+                    case "Red":
+                        redBeans -= amount;
+                        Console.WriteLine($"{redBeans} Red Beans remaining in balance");
+                        break;
+                    case "Yellow":
+                        yellowBeans -= amount;
+                        Console.WriteLine($"{yellowBeans} Yellow Beans remaining in balance");
+                        break;
+                    case "Green":
+                        greenBeans -= amount;
+                        Console.WriteLine($"{greenBeans} Green Beans remaining in balance");
+                        break;
+            }
+            }
+            else
+            {
+                Console.WriteLine("Invalid amount! try again!");
+                Selling(city, beanType, gameData);
+            }
         }
+
     }
 
     private void GameEnd(Game gameData)
     {
-        // TODO
+        Console.WriteLine("--GAME ENDED--");
+        Console.WriteLine($"Started the game with {startingCash} in cash");
+        Console.WriteLine($"Ended the game with {currentCash} in cash after {currentTurn} turns");
+        Console.WriteLine($"earned {currentCash - startingCash} in total profit over this period");
     }
 }
