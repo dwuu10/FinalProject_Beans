@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TCgtCTFB64E=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dylan\\Documents\\Visual Studio 2022\\WebApplicationTesting1\\Final_Project\\WebApplicationTesting1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dylan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
