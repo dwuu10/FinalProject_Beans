@@ -1,7 +1,7 @@
 using System;
 using System.Transactions;
 
-namespace Final_Project_Beans;
+namespace Final_Project;
 
 public class Game
 {

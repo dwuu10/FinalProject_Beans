@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
-namespace Final_Project_Beans
-{
+namespace Final_Project;
+
     public class OpenWeatherMapAPI
     {
         public static int Weather(string cityname)
@@ -48,4 +48,4 @@ namespace Final_Project_Beans
         }
 
     }
-}
+

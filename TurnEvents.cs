@@ -1,6 +1,6 @@
 using System;
 
-namespace Final_Project_Beans;
+namespace Final_Project;
 
 public class TurnEvents
 {

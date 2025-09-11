@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApplicationTesting1.Models;
 
-namespace WebApplicationTesting1.Controllers;
+namespace Final_Project.Controllers;
 
 public class HomeController : Controller
 {
