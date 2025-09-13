@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,3 +15,4 @@ using Final_Project.Models;
 
         public DbSet<Final_Project.Models.City> City { get; set; } = default!;
     }
+    

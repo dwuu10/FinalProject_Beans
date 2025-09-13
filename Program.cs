@@ -1,7 +1,9 @@
+
 using CityModel.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<CityDataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CityDataContext") ?? throw new InvalidOperationException("Connection string 'CityDataContext' not found.")));
 
@@ -10,11 +12,13 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-
+    
     SeedData.Initialize(services);
+    
 }
 
 

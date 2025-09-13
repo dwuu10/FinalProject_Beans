@@ -34,8 +34,36 @@ public class Game
         cityList = cities;
     }
 
+    public Game(int startCash, int maxTurns, string[] cityNames, int cash, int turn, int blue, int red, int yellow, int green)
+    {
+        //set cash and turns
+        startingCash = startCash;
+        currentCash = cash;
+        turnLimit = maxTurns;
+        currentTurn = turn;
+
+        //set bean bean amount
+        blueBeans = blue;
+        redBeans = red;
+        yellowBeans = yellow;
+        greenBeans = green;
+
+        //populate citylist
+        var cities = new CityData[cityNames.Length];
+        int iterator = 0;
+        foreach (string name in cityNames)
+        {
+            var newTemp = OpenWeatherMapAPI.Weather(name);
+            var newHumid = OpenWeatherMapAPI.Humidity(name);
+            var newCity = new CityData(name, newHumid, newTemp);
+            cities[iterator] = newCity;
+            iterator++;
+        }
+        cityList = cities;
+    }
+
     public bool exitGameFlag = false;
-    CityData[] cityList;
+    public CityData[] cityList;
     public int turnLimit;
     public int startingCash;
     public int currentTurn;

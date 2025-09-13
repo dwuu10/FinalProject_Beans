@@ -5,8 +5,45 @@
 
 <h2>Bean Trader</h2>
 
-<p>Hello from our View Template!</p>
+<p>@ViewData["Event"]</p>
 
 <ul>
-    <li>Current Cash: @ViewData["Cash"]</li>
+    @{
+        int cash = (int)ViewData["Cash"];
+        int turn = (int)ViewData["Turn"];
+        int startCash = (int)ViewData["StartCash"];
+        int maxturns = (int)ViewData["MaxTurns"];
+        int[]? inv = (int[])ViewData["Inventory"];
+        string[]? cities = (string[])ViewData["Cities"];
+        int[]? bluePrices = (int[])ViewData["BluePrices"];
+        int[]? redPrices = (int[])ViewData["RedPrices"];
+        int[]? yellowPrices = (int[])ViewData["YellowPrices"];
+        int[]? greenPrices = (int[])ViewData["GreenPrices"];
+
+        int blue = inv[0];
+        int red = inv[1];
+        int yellow = inv[2];
+        int green = inv[3];
+    }
+    <li>Current Cash: @cash</li>
+    <li>Turns: @turn of @maxturns</li>
+    <li>Cities | Blue Beans | Red Beans | Yellow Beans | Green Beans</li>
+    @{
+        int iterator = 0;
+    }
+    @foreach (string city in cities){
+
+        <li>@city | @bluePrices[iterator] | @redPrices[iterator] | @yellowPrices[iterator] | @greenPrices[iterator]</li>
+        iterator++;
+    }
+
+    @{
+        turn++;
+        if (turn > maxturns){
+            <p><a href="/GameWindow/GameEnd?StartCash=@startCash&TurnLimit=@maxturns&Cash=@cash">End Game</a></p>
+        }
+        else {
+            <p><a href="/GameWindow/GameLoop?StartCash=@startCash&TurnLimit=@maxturns&Cash=@cash&Turn=@turn&Blue=@blue&Red=@red&Yellow=@yellow&Green=@green">Next Turn</a></p>
+        }
+    }
 </ul>
