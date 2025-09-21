@@ -5,6 +5,9 @@ There will also be random events that will affect bean prices and availability
 Have fun and good luck!
 
 RoadMap/To-Do list:
+
 CRUD functionality (cheat mode to edit values, ability to add new cities)
+
 converting to GoDot project? (will allow for proper GUI)
+
 converting to webpage? (will allow for proper GUI)
