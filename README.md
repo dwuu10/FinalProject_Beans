@@ -6,6 +6,8 @@ Have fun and good luck!
 
 RoadMap/To-Do list:
 
+more randomness in events and prices (using min-max temperature/humidity and picking a random value between?)
+
 saving/loading (read/write to text files, local database?)
 
 cheat mode to edit values, ability to add new cities?
