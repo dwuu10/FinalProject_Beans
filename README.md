@@ -6,7 +6,9 @@ Have fun and good luck!
 
 RoadMap/To-Do list:
 
-CRUD functionality (cheat mode to edit values, ability to add new cities)
+saving/loading (read/write to text files, local database?)
+
+cheat mode to edit values, ability to add new cities?
 
 converting to GoDot project? (will allow for proper GUI)
 
