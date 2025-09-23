@@ -69,6 +69,18 @@ public class Game
             customTurns = int.Parse(customTurnsInput);
         }
 
+        Console.WriteLine("type 1 to enable cheats, leave empty or type anything else to play without cheats");
+        var cheatsInput = Console.ReadLine();
+        var cheatsEnabled = "";
+        if (cheatsInput == "1")
+        {
+            cheatsEnabled = true;
+        }
+        else
+        {
+            cheatsEnabled = false;
+        }
+
         var gameObj = new Game(customCash, customTurns, cityStrings);
         gameObj.TurnLoop(gameObj);
     }
@@ -143,6 +155,11 @@ public class Game
         Console.WriteLine($"4: Next Turn");
         Console.WriteLine($"5: Exit Game (progress WILL NOT SAVE)");
         Console.WriteLine("entering a non-number or invalid number will restart the selection");
+        if (cheatsEnabled)
+        {
+            Console.WriteLine($"6: cheat menu");
+        }
+
         var citySelection = Console.ReadLine();
         switch (citySelection)
         {
@@ -164,6 +181,11 @@ public class Game
                 exitGameFlag = true;
                 TurnLoop(gameData);
                 break;
+            case "6":
+                if (cheatsEnabled)
+                {
+
+                }
             default:
                 Console.WriteLine("Invalid selection! try again!");
                 PlayerActions(gameData);
@@ -360,7 +382,7 @@ public class Game
                         greenBeans -= amount;
                         Console.WriteLine($"{greenBeans} Green Beans remaining in balance");
                         break;
-            }
+                }
             }
             else
             {
@@ -377,5 +399,150 @@ public class Game
         Console.WriteLine($"Started the game with {startingCash} in cash");
         Console.WriteLine($"Ended the game with {currentCash} in cash after {currentTurn} turns");
         Console.WriteLine($"earned {currentCash - startingCash} in total profit over this period");
+    }
+
+    private void CheatMode(Game gameData)
+    {
+        Console.WriteLine($"0: Edit your cash");
+        Console.WriteLine($"1: Edit your turn");
+        Console.WriteLine($"2: Edit your beans");
+        Console.WriteLine($"3: Go back");
+        var cheatSelection = Console.ReadLine();
+        switch (cheatSelection)
+        {
+            case "0":
+                EditCash(gameData);
+                break;
+            case "1":
+                EditTurns(gameData);
+                break;
+            case "2":
+                break;
+            case "3":
+                PlayerActions(gameData);
+                break;
+            default:
+                Console.WriteLine("Invalid Input, please try again");
+                CheatMode(gameData);
+        }
+    }
+
+    private void EditBeans(Game gameData)
+    {
+        Console.WriteLine("0: Edit Blue Beans");
+        Console.WriteLine("1: Edit Red Beans");
+        Console.WriteLine("2: Edit Yellow Beans");
+        Console.WriteLine("3: Edit Green Beans");
+        Console.WriteLine("4: Go back");
+        string beanType = "";
+        var editBeanInput = Console.ReadLine();
+        switch (editBeanInput)
+        {
+            case "0":
+                beanType = "blue";
+                break;
+            case "1":
+                beanTyoe = "red";
+                break;
+            case "2":
+                beanType = "yellow";
+                break;
+            case "3":
+                beanType = "green";
+                break;
+            case "4":
+                CheatMode(gameData);
+                break;
+            default:
+                Console.WriteLine("Invalid input, please try again");
+                EditBeans(gameData);
+        }
+    }
+
+    private void EditCash(Game gameData)
+    {
+        Console.WriteLine("Set your cash");
+        Console.WriteLine("b: Go back");
+        var editCashInput = Console.ReadLine();
+        if (editCashInput = "b")
+        {
+            CheatMode(gameData);
+        }
+        else
+        {
+            if (int.TryParse(editCashInput, out x))
+            {
+                gameData.currentCash = int.Parse(editCashInput);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input, please try again");
+                EditCash(gameData);
+            }
+        }
+    }
+
+    private void EditTurns(Game gameData)
+    {
+        Console.WriteLine("Set your turn");
+        Console.WriteLine("b: go back");
+        var editTurnInput = Console.ReadLine();
+        if (editTurnInput = "b")
+        {
+            CheatMode(gameData);
+        }
+        else
+        {
+            if (int.TryParse(editTurnInput, out x))
+            {
+                gameData.currentTurn = int.Parse(editTurnInput);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input, please try again");
+                EditTurns(gameData);
+            }
+        }
+    }
+
+    private void BeanSetter(Game gameData, string beanType)
+    {
+        Console.WriteLine($"Editing bean type: {beanType}");
+        Console.WriteLine($"Set {beanType} amount");
+        Console.WriteLine("b: Go back");
+        var editCountInput = Console.ReadLine();
+        int amountToChange;
+        if (editCountInput = "b")
+        {
+            EditBeans(gameData);
+        }
+        else
+        {
+            if (int.TryParse(editCountInput, out x))
+            {
+                amountToChange = int.Parse(editCountInput);
+                switch (beanType)
+                {
+                    case "blue":
+                        gameData.blueBeans = amountToChange;
+                        break;
+                    case "red":
+                        gameData.redBeans = amountToChange;
+                        break;
+                    case "yellow":
+                        gameData.yellowBeans = amountToChange;
+                        break;
+                    case "green":
+                        gameData.greenBeans = amountToChange;
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input, please try again");
+                BeanSetter(gameData, beanType);
+            }
+        }
+        CheatMode(gameData);
     }
 }
