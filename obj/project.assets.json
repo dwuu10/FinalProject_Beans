@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dylan\\Desktop\\Coding\\repos\\Final_Project_Beans\\Final_Project_Beans.csproj",
+      "projectUniqueName": "C:\\Users\\dylan\\Documents\\Visual Studio 2022\\WebApplicationTesting1\\Final_Project\\Final_Project_Beans.csproj",
       "projectName": "Final_Project_Beans",
-      "projectPath": "C:\\Users\\dylan\\Desktop\\Coding\\repos\\Final_Project_Beans\\Final_Project_Beans.csproj",
+      "projectPath": "C:\\Users\\dylan\\Documents\\Visual Studio 2022\\WebApplicationTesting1\\Final_Project\\Final_Project_Beans.csproj",
       "packagesPath": "C:\\Users\\dylan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dylan\\Desktop\\Coding\\repos\\Final_Project_Beans\\obj\\",
+      "outputPath": "C:\\Users\\dylan\\Documents\\Visual Studio 2022\\WebApplicationTesting1\\Final_Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",

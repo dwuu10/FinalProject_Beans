@@ -67,3 +67,39 @@ C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_P
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_Project_Beans.genruntimeconfig.cache
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\ref\Final_Project_Beans.dll
 C:\Users\dylan\Desktop\Coding\repos\Final_Project_Beans\obj\Debug\net6.0\Final_Project_Beans.sourcelink.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\appsettings.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.staticwebassets.runtime.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.staticwebassets.endpoints.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.exe
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.deps.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.runtimeconfig.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.dll
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Final_Project_Beans.pdb
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.csproj.AssemblyReference.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\rpswa.dswa.cache.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.AssemblyInfoInputs.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.AssemblyInfo.cs
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.csproj.CoreCompileInputs.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.RazorAssemblyInfo.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.RazorAssemblyInfo.cs
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.sourcelink.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\rjimswa.dswa.cache.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\rjsmrazor.dswa.cache.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\rjsmcshtml.dswa.cache.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\scopedcss\bundle\Final_Project_Beans.styles.css
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\scopedcss\projectbundle\Final_Project_Beans.bundle.scp.css
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\staticwebassets.build.json.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Pr.A8973341.Up2Date
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.dll
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\refint\Final_Project_Beans.dll
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.pdb
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\Final_Project_Beans.genruntimeconfig.cache
+C:\Users\dylan\Documents\Visual Studio 2022\WebApplicationTesting1\Final_Project\obj\Debug\net6.0\ref\Final_Project_Beans.dll
