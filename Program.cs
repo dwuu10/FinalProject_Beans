@@ -50,7 +50,7 @@ namespace Final_Project_Beans
 
             //Console.WriteLine($"Seattle weather: {OpenWeatherMapAPI.Weather("Seattle")}; humidity: {OpenWeatherMapAPI.Humidity("Seattle")}");
 
-            Game.NewGame();
+            Game.StartGame();
         }
     }
 }

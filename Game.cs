@@ -35,6 +35,36 @@ public class Game
         cityList = cities;
     }
 
+    // load saved game constructor
+    public Game(int startCash, int maxTurns, string[] cityNames, bool cheatMode, int cash, int turn, int blue, int red, int green, int yellow)
+    {
+        //set cash and turns
+        startingCash = startCash;
+        currentCash = cash;
+        turnLimit = maxTurns;
+        currentTurn = turn;
+        cheats = cheatMode;
+
+        //set bean bean amount
+        blueBeans = blue;
+        redBeans = red;
+        yellowBeans = yellow;
+        greenBeans = green;
+
+        //populate citylist
+        var cities = new CityData[cityNames.Length];
+        int iterator = 0;
+        foreach (string name in cityNames)
+        {
+            var newTemp = OpenWeatherMapAPI.Weather(name);
+            var newHumid = OpenWeatherMapAPI.Humidity(name);
+            var newCity = new CityData(name, newHumid, newTemp);
+            cities[iterator] = newCity;
+            iterator++;
+        }
+        cityList = cities;
+    }
+
     public bool exitGameFlag = false;
     CityData[] cityList;
     public int turnLimit;
@@ -86,6 +116,33 @@ public class Game
 
         var gameObj = new Game(customCash, customTurns, cityStrings, cheatsEnabled);
         gameObj.TurnLoop(gameObj);
+    }
+
+    public static void StartGame()
+    {
+        Console.WriteLine("New game or load game?");
+            Console.WriteLine("0: New Game");
+            Console.WriteLine("1: Load Game");
+            Console.WriteLine("2: Exit Program");
+
+            var input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "0":
+                    NewGame();
+                    break;
+                case "1":
+                    LoadGame();
+                    break;
+                case "2":
+                    System.Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Invalid Input! try again");
+                    StartGame();
+                    break;
+            }
     }
 
     private void TurnLoop(Game gameData)
@@ -156,7 +213,8 @@ public class Game
             index++;
         }
         Console.WriteLine($"4: Next Turn");
-        Console.WriteLine($"5: Exit Game (progress WILL NOT SAVE)");
+        Console.WriteLine($"5: Back to Main Menu (progress WILL NOT SAVE)");
+        Console.WriteLine("s: save game");
         Console.WriteLine("entering a non-number or invalid number will restart the selection");
         if (gameData.cheats)
         {
@@ -181,8 +239,7 @@ public class Game
             case "4":
                 break;
             case "5":
-                exitGameFlag = true;
-                TurnLoop(gameData);
+                StartGame();
                 break;
             case "6":
                 if (gameData.cheats)
@@ -194,6 +251,9 @@ public class Game
                     Console.WriteLine("cheats not available! try again!");
                     PlayerActions(gameData);
                 }
+                break;
+            case "s":
+                SaveGame(gameData);
                 break;
             default:
                 Console.WriteLine("Invalid selection! try again!");
@@ -408,6 +468,10 @@ public class Game
         Console.WriteLine($"Started the game with {startingCash} in cash");
         Console.WriteLine($"Ended the game with {currentCash} in cash after {currentTurn} turns");
         Console.WriteLine($"earned {currentCash - startingCash} in total profit over this period");
+
+        Console.WriteLine("ENTER TO RETURN TO MENU");
+        Console.ReadLine();
+        StartGame();
     }
 
     private void CheatMode(Game gameData)
@@ -567,5 +631,84 @@ public class Game
             }
         }
         CheatMode(gameData);
+    }
+
+    private static void LoadGame()
+    {
+        string mainDir = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppContext.BaseDirectory).ToString()).ToString()).ToString()).ToString();
+        var cityStrings = new string[] { "Seattle", "Stockholm", "Rome", "Manila" };
+
+        Console.WriteLine("Type the name of the save file (no extensions)");
+        Console.WriteLine("Enter a blank name to go back");
+        string fileName = Console.ReadLine();
+        if (fileName == "")
+        {
+            StartGame();
+        }
+
+        try
+        {
+            StreamReader reader = new StreamReader($"{mainDir}/Saves/{fileName}.txt");
+            var startingCash = int.Parse(reader.ReadLine());
+            var maxTurn = int.Parse(reader.ReadLine());
+            var cheatsFile = reader.ReadLine();
+            bool cheats = false;
+            if (cheatsFile == "1")
+            {
+                cheats = true;
+            }
+            else
+            {
+                cheats = false;
+            }
+            var cash = int.Parse(reader.ReadLine());
+            var turn = int.Parse(reader.ReadLine());
+            var blue = int.Parse(reader.ReadLine());
+            var red = int.Parse(reader.ReadLine());
+            var green = int.Parse(reader.ReadLine());
+            var yellow = int.Parse(reader.ReadLine());
+            reader.Close();
+
+            var gameObj = new Game(startingCash, maxTurn, cityStrings, cheats, cash, turn, blue, red, green, yellow);
+            gameObj.TurnLoop(gameObj);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("something went wrong, did you enter the name correctly?");
+            StartGame();
+        }
+    }
+
+    private static void SaveGame(Game gameData)
+    {
+        string mainDir =  System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppContext.BaseDirectory).ToString()).ToString()).ToString()).ToString();
+        Console.WriteLine("Enter the file name (no extensions)");
+        Console.WriteLine("Enter a blank name to go back");
+        string fileName = Console.ReadLine();
+        if (fileName == "")
+        {
+            StartGame();
+        }
+
+        StreamWriter writer = new StreamWriter($"{mainDir}/Saves/{fileName}.txt");
+        writer.WriteLine(gameData.startingCash);
+        writer.WriteLine(gameData.turnLimit);
+        if (gameData.cheats)
+        {
+            writer.WriteLine("1");
+        }
+        else
+        {
+            writer.WriteLine("0");
+        }
+        writer.WriteLine(gameData.currentCash);
+        writer.WriteLine(gameData.currentTurn);
+        writer.WriteLine(gameData.blueBeans);
+        writer.WriteLine(gameData.redBeans);
+        writer.WriteLine(gameData.greenBeans);
+        writer.WriteLine(gameData.yellowBeans);
+        writer.Close();
+        Console.WriteLine($"Game saved to Saves/{fileName}.txt");
+        gameData.PlayerActions(gameData);
     }
 }
