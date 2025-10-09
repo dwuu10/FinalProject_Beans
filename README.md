@@ -8,6 +8,10 @@ Features:
 
 - 4 types of beans to trade for profit
 
+- Uses temperature and humidity data from the OpenWeatherMap API to determine bean prices
+
+- 6 different kinds of random events that further modify bean prices
+
 - Customizible starting settings (changing starting cash and turn limit)
 
 - Saving and loading to and from .txt files
@@ -16,6 +20,8 @@ RoadMap/To-Do list:
 
 - more randomness in events and prices (using min-max temperature/humidity and picking a random value between?)
 
-- converting to GoDot project? (will allow for proper GUI)
+- More cities/ability to add cities of your choice?
+
+- graphics/UI? (converting to GoDot project?)
 
 - converting to webpage? (will allow for proper GUI)
