@@ -4,14 +4,18 @@ This game uses real-life weather data from these cities to determine bean prices
 There will also be random events that will affect bean prices and availability
 Have fun and good luck!
 
+Features:
+
+- 4 types of beans to trade for profit
+
+- Customizible starting settings (changing starting cash and turn limit)
+
+- Saving and loading to and from .txt files
+
 RoadMap/To-Do list:
 
-more randomness in events and prices (using min-max temperature/humidity and picking a random value between?)
+- more randomness in events and prices (using min-max temperature/humidity and picking a random value between?)
 
-saving/loading (read/write to text files, local database?)
+- converting to GoDot project? (will allow for proper GUI)
 
-cheat mode to edit values, ability to add new cities?
-
-converting to GoDot project? (will allow for proper GUI)
-
-converting to webpage? (will allow for proper GUI)
+- converting to webpage? (will allow for proper GUI)
