@@ -6,7 +6,7 @@ Have fun and good luck!
 
 Features:
 
-- 4 types of beans to trade for profit
+- 4 types of beans to trade for profit, each one is affected by either humidity or temperature
 
 - Uses temperature and humidity data from the OpenWeatherMap API to determine bean prices
 
