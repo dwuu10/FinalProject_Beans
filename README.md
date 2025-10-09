@@ -8,7 +8,7 @@ Features:
 
 - 4 types of beans to trade for profit, each one is affected by either humidity or temperature
 
-- Uses temperature and humidity data from the OpenWeatherMap API to determine bean prices
+- Uses temperature and humidity data from the OpenWeatherMap API
 
 - 6 different kinds of random events that further modify bean prices
 
