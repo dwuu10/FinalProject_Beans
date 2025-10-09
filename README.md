@@ -12,7 +12,7 @@ Features:
 
 - 6 different kinds of random events that further modify bean prices
 
-- Customizible starting settings (changing starting cash and turn limit)
+- Customizable starting settings (changing starting cash and turn limit)
 
 - Saving and loading to and from .txt files
 
