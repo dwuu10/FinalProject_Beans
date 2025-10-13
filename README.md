@@ -25,3 +25,11 @@ RoadMap/To-Do list:
 - graphics/UI? (converting to GoDot project?)
 
 - converting to webpage? (will allow for proper GUI)
+
+How to use:
+
+- Clone the repository to your machine (make sure Git is installed)
+
+- navigate to bin/Debug/net6.0
+
+- open Final_Project_Beans.exe
