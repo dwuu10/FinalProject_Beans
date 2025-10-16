@@ -81,11 +81,12 @@ public class Game
     // start new game
     public static void NewGame()
     {
+        // default values
         var cityStrings = new string[] { "Seattle", "Stockholm", "Rome", "Manila" };
         int x = 0;
         int defaultCash = 1000;
         int defaultTurns = 10;
-
+        // player enters amount of cash they want to start with, if invalid input, dont update from default
         Console.WriteLine("enter the amount of cash you would to start with, entering a non-number will default to 1000");
         var customCashInput = Console.ReadLine();
         var customCash = defaultCash;
@@ -93,7 +94,7 @@ public class Game
         {
             customCash = int.Parse(customCashInput);
         }
-
+        // ditto but with turn limit
         Console.WriteLine("enter the amount of turns you would like to play to, entering a non-number will default to 10");
         var customTurnsInput = Console.ReadLine();
         var customTurns = defaultTurns;
@@ -101,7 +102,7 @@ public class Game
         {
             customTurns = int.Parse(customTurnsInput);
         }
-
+        // if player enters 1, cheats are enabled, otherwise, no cheats
         Console.WriteLine("type 1 to enable cheats, leave empty or type anything else to play without cheats");
         var cheatsInput = Console.ReadLine();
         bool cheatsEnabled;
@@ -113,40 +114,45 @@ public class Game
         {
             cheatsEnabled = false;
         }
-
+        // creates new game object, which contains all important game data
         var gameObj = new Game(customCash, customTurns, cityStrings, cheatsEnabled);
         gameObj.TurnLoop(gameObj);
     }
 
+    // actually start the game, options for user to create new or load a saved game
     public static void StartGame()
     {
         Console.WriteLine("New game or load game?");
-            Console.WriteLine("0: New Game");
-            Console.WriteLine("1: Load Game");
-            Console.WriteLine("2: Exit Program");
+        Console.WriteLine("0: New Game");
+        Console.WriteLine("1: Load Game");
+        Console.WriteLine("2: Exit Program");
 
-            var input = Console.ReadLine();
+        var input = Console.ReadLine();
 
-            switch (input)
-            {
-                case "0":
-                    NewGame();
-                    break;
-                case "1":
-                    LoadGame();
-                    break;
-                case "2":
-                    System.Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Invalid Input! try again");
-                    StartGame();
-                    break;
-            }
+        switch (input)
+        {
+            case "0":
+                NewGame();
+                break;
+            case "1":
+                LoadGame();
+                break;
+            case "2":
+                // close the program
+                System.Environment.Exit(0);
+                break;
+            default:
+                // if invalid input, call the function again to try again
+                Console.WriteLine("Invalid Input! try again");
+                StartGame();
+                break;
+        }
     }
 
+    // handles each game turn
     private void TurnLoop(Game gameData)
     {
+        // end game if forced or turn limit is reached
         if (gameData.exitGameFlag == true || currentTurn > turnLimit)
         {
             GameEnd(gameData);
@@ -154,19 +160,24 @@ public class Game
         }
         else
         {
+            // update city data
             var currentCityData = TurnEvents.UpdateCityWeather(gameData.cityList);
             Console.WriteLine($"--BEGINNING TURN {gameData.currentTurn}--");
             Console.WriteLine("--CITY DATA UPDATED--");
             gameData.cityList = currentCityData;
+            // handle turn events
             TurnEvents.TurnEventHandler(currentCityData);
+            // print data and get player inputs
             gameData.PrintCityData();
             gameData.PrintPlayerData();
             gameData.PlayerActions(gameData);
             gameData.currentTurn++;
+            // next turn
             TurnLoop(gameData);
         }
     }
-
+    
+    // prints important city and player data
     private void PrintCityData()
     {
         var cities = cityList;
@@ -193,6 +204,7 @@ public class Game
         Console.WriteLine("------------------");
     }
 
+    // transaction validation functions, used later
     private bool validateBuyOrder(int amount, int price)
     {
         return 0 <= currentCash - (amount * price);
@@ -203,6 +215,7 @@ public class Game
         return playerStock - amount >= 0;
     }
 
+    // initial player options for each turn
     private void PlayerActions(Game gameData)
     {
         Console.WriteLine("Select one of the following");
@@ -216,6 +229,7 @@ public class Game
         Console.WriteLine($"5: Back to Main Menu (progress WILL NOT SAVE)");
         Console.WriteLine("s: save game");
         Console.WriteLine("entering a non-number or invalid number will restart the selection");
+        // only display cheat options if cheat mode is enabled
         if (gameData.cheats)
         {
             Console.WriteLine($"6: cheat menu");
@@ -242,6 +256,7 @@ public class Game
                 StartGame();
                 break;
             case "6":
+            // only available if cheats are enabled
                 if (gameData.cheats)
                 {
                     CheatMode(gameData);
@@ -253,15 +268,18 @@ public class Game
                 }
                 break;
             case "s":
+            // save game
                 SaveGame(gameData);
                 break;
             default:
+            // if invalid option, call function again
                 Console.WriteLine("Invalid selection! try again!");
                 PlayerActions(gameData);
                 break;
         }
     }
 
+    // if city is selected by player, have player select which bean they wish to trade
     private void TransactionSelection(CityData city, Game gameData)
     {
         Console.WriteLine($"Bean Market in {city.cityName}:");
@@ -287,15 +305,18 @@ public class Game
                 BuySellOrder(city, "Green", gameData);
                 break;
             case "4":
+            // return to player actions menu
                 PlayerActions(gameData);
                 break;
             default:
+            // if invalid option, call function again
                 Console.WriteLine("Invalid selection! try again!");
                 TransactionSelection(city, gameData);
                 break;
         }
     }
 
+    // if player has selected bean type, have them choose whether to buy or sell
     private void BuySellOrder(CityData city, string beanType, Game gameData)
     {
         Console.WriteLine($"Buy or Sell {beanType} Beans?");
@@ -312,15 +333,18 @@ public class Game
                 Selling(city, beanType, gameData);
                 break;
             case "2":
+            // return to selecting bean type
                 TransactionSelection(city, gameData);
                 break;
             default:
+                // if invalid option, call function again
                 Console.WriteLine("Invalid selection! try again!");
                 BuySellOrder(city, beanType, gameData);
                 break;
         }
     }
 
+    // if player is buying, have them enter how many beans they wish to buy
     private void Buying(CityData city, string beanType, Game gameData)
     {
         int beanPrice = 0;
@@ -348,16 +372,19 @@ public class Game
         }
         else
         {
+            // invalid input handler, call function again
             Console.WriteLine("Invalid amount! try again!");
             Buying(city, beanType, gameData);
         }
 
         if (amount <= 0)
         {
+            // if input is 0 or less, return to selecting buy or sell order
             BuySellOrder(city, beanType, gameData);
         }
         else
         {
+            // order validation
             if (validateBuyOrder(amount, beanPrice))
             {
                 Console.WriteLine($"{amount} {beanType} Beans bought at {beanPrice} each for a total of {amount * beanPrice}");
@@ -381,12 +408,14 @@ public class Game
             }
             else
             {
+                // if invalid amount, return to buy options
                 Console.WriteLine("Invalid amount! try again!");
                 Buying(city, beanType, gameData);
             }
         }
     }
 
+    // if player is selling, have them enter how many they wish to sell
     private void Selling(CityData city, string beanType, Game gameData)
     {
         int beanPrice = 0;
@@ -419,16 +448,19 @@ public class Game
         }
         else
         {
+            // invalid input handler, call function again
             Console.WriteLine("Invalid amount! try again!");
             Selling(city, beanType, gameData);
         }
 
         if (amount <= 0)
         {
+            // if input is 0 or less, return to selecting buy or sell order
             BuySellOrder(city, beanType, gameData);
         }
         else
         {
+            // order validation
             if (validateSellOrder(amount, beanAmount))
             {
                 Console.WriteLine($"{amount} {beanType} Beans sold at {beanPrice} each for a total of {amount * beanPrice}");
@@ -455,6 +487,7 @@ public class Game
             }
             else
             {
+                // if invalid amount, return to sell options
                 Console.WriteLine("Invalid amount! try again!");
                 Selling(city, beanType, gameData);
             }
@@ -462,18 +495,20 @@ public class Game
 
     }
 
+    // if game forced to end or reached the final turn, print out ending stats
     private void GameEnd(Game gameData)
     {
         Console.WriteLine("--GAME ENDED--");
         Console.WriteLine($"Started the game with {startingCash} in cash");
         Console.WriteLine($"Ended the game with {currentCash} in cash after {currentTurn} turns");
         Console.WriteLine($"earned {currentCash - startingCash} in total profit over this period");
-
+        // return to starting game menu
         Console.WriteLine("ENTER TO RETURN TO MENU");
         Console.ReadLine();
         StartGame();
     }
 
+    // if cheat mode is enabled and selected in player actions, will show cheat menu
     private void CheatMode(Game gameData)
     {
         Console.WriteLine($"0: Edit your cash");
@@ -496,12 +531,14 @@ public class Game
                 PlayerActions(gameData);
                 break;
             default:
+                // invalid input handler
                 Console.WriteLine("Invalid Input, please try again");
                 CheatMode(gameData);
                 break;
         }
     }
 
+    // player wishes to edit their bean amounts with cheats
     private void EditBeans(Game gameData)
     {
         Console.WriteLine("0: Edit Blue Beans");
@@ -530,15 +567,18 @@ public class Game
                 BeanSetter(gameData, beanType);
                 break;
             case "4":
+            // return to cheat menu
                 CheatMode(gameData);
                 break;
             default:
+            // invalid input handler
                 Console.WriteLine("Invalid input, please try again");
                 EditBeans(gameData);
                 break;
         }
     }
 
+    // player wishes to edit their cash with cheats
     private void EditCash(Game gameData)
     {
         Console.WriteLine("Set your cash");
@@ -546,6 +586,7 @@ public class Game
         var editCashInput = Console.ReadLine();
         if (editCashInput == "b")
         {
+            // return to cheats menu
             CheatMode(gameData);
         }
         else
@@ -559,12 +600,14 @@ public class Game
             }
             else
             {
+                // invalid input handler
                 Console.WriteLine("Invalid Input, please try again");
                 EditCash(gameData);
             }
         }
     }
 
+    // player wishes to edit their current turn with cheats
     private void EditTurns(Game gameData)
     {
         Console.WriteLine("Set your turn");
@@ -572,6 +615,7 @@ public class Game
         var editTurnInput = Console.ReadLine();
         if (editTurnInput == "b")
         {
+            // return to cheats menu
             CheatMode(gameData);
         }
         else
@@ -584,12 +628,14 @@ public class Game
             }
             else
             {
+                // invalid input handler
                 Console.WriteLine("Invalid Input, please try again");
                 EditTurns(gameData);
             }
         }
     }
 
+    // manually set number of selected bean type
     private void BeanSetter(Game gameData, string beanType)
     {
         Console.WriteLine($"Editing bean type: {beanType}");
@@ -599,6 +645,7 @@ public class Game
         int amountToChange;
         if (editCountInput == "b")
         {
+            // return to edit beans selection
             EditBeans(gameData);
         }
         else
@@ -621,11 +668,13 @@ public class Game
                         gameData.greenBeans = amountToChange;
                         break;
                 }
+                // return to player actions for that turn
                 PrintPlayerData();
                 PlayerActions(gameData);
             }
             else
             {
+                // invalid input handler
                 Console.WriteLine("Invalid Input, please try again");
                 BeanSetter(gameData, beanType);
             }
@@ -633,21 +682,26 @@ public class Game
         CheatMode(gameData);
     }
 
+    // load game from a .txt file in the "Saves" folder
     private static void LoadGame()
     {
+        // Saves folder directory
         string mainDir = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppContext.BaseDirectory).ToString()).ToString()).ToString()).ToString();
         var cityStrings = new string[] { "Seattle", "Stockholm", "Rome", "Manila" };
 
+        // get player input for save file name
         Console.WriteLine("Type the name of the save file (no extensions)");
         Console.WriteLine("Enter a blank name to go back");
         string fileName = Console.ReadLine();
         if (fileName == "")
         {
+            // return to start game menu if empty input
             StartGame();
         }
 
         try
         {
+            // read selected file, each value is currently saved on a seperate line
             StreamReader reader = new StreamReader($"{mainDir}/Saves/{fileName}.txt");
             var startingCash = int.Parse(reader.ReadLine());
             var maxTurn = int.Parse(reader.ReadLine());
@@ -669,27 +723,33 @@ public class Game
             var yellow = int.Parse(reader.ReadLine());
             reader.Close();
 
+            // create new game object with loaded data and begin turn loop
             var gameObj = new Game(startingCash, maxTurn, cityStrings, cheats, cash, turn, blue, red, green, yellow);
             gameObj.TurnLoop(gameObj);
         }
         catch (Exception)
         {
+            // if something went wrong, return to start game menu after informing player
             Console.WriteLine("something went wrong, did you enter the name correctly?");
             StartGame();
         }
     }
 
+    // saves game to a .txt file in the "Saves" folder
     private static void SaveGame(Game gameData)
     {
-        string mainDir =  System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppContext.BaseDirectory).ToString()).ToString()).ToString()).ToString();
+        // Saves folder directory
+        string mainDir = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.AppContext.BaseDirectory).ToString()).ToString()).ToString()).ToString();
         Console.WriteLine("Enter the file name (no extensions)");
         Console.WriteLine("Enter a blank name to go back");
         string fileName = Console.ReadLine();
         if (fileName == "")
         {
+            // return to start menu if empty input
             StartGame();
         }
 
+        // create new save file, cash, turn, and bean inventory data from currently running game written on seperate lines
         StreamWriter writer = new StreamWriter($"{mainDir}/Saves/{fileName}.txt");
         writer.WriteLine(gameData.startingCash);
         writer.WriteLine(gameData.turnLimit);
@@ -708,6 +768,7 @@ public class Game
         writer.WriteLine(gameData.greenBeans);
         writer.WriteLine(gameData.yellowBeans);
         writer.Close();
+        // return to the game once saving is complete
         Console.WriteLine($"Game saved to Saves/{fileName}.txt");
         gameData.PlayerActions(gameData);
     }

@@ -11,6 +11,7 @@ namespace Final_Project_Beans
 {
     public class OpenWeatherMapAPI
     {
+        // get city temperature from OpenWeatherMapAPI
         public static int Weather(string cityname)
         {
             var client = new HttpClient();
@@ -29,6 +30,7 @@ namespace Final_Project_Beans
             return (int)temp;
         }
 
+        // get city humidity from OpenWeatherMapAPI
         public static int Humidity(string cityname)
         {
             var client = new HttpClient();
