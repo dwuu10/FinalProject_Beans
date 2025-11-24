@@ -1,0 +1,63 @@
+@model CityModel.City
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CityModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Temperature" class="control-label"></label>
+                <input asp-for="Temperature" class="form-control" />
+                <span asp-validation-for="Temperature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Humidity" class="control-label"></label>
+                <input asp-for="Humidity" class="form-control" />
+                <span asp-validation-for="Humidity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BluePrice" class="control-label"></label>
+                <input asp-for="BluePrice" class="form-control" />
+                <span asp-validation-for="BluePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RedPrice" class="control-label"></label>
+                <input asp-for="RedPrice" class="form-control" />
+                <span asp-validation-for="RedPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GreenPrice" class="control-label"></label>
+                <input asp-for="GreenPrice" class="form-control" />
+                <span asp-validation-for="GreenPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YellowPrice" class="control-label"></label>
+                <input asp-for="YellowPrice" class="form-control" />
+                <span asp-validation-for="YellowPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
